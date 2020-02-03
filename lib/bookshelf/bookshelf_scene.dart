@@ -27,6 +27,7 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
   void initState() {
     super.initState();
     fetchData();
+    print("合并分支");
 
     scrollController.addListener(() {
       // 滚动监听位置

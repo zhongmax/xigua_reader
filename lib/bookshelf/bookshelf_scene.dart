@@ -1,11 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:xigua_read/app/app_navigator.dart';
 import 'package:xigua_read/app/constant.dart';
 import 'package:xigua_read/app/request.dart';
 import 'package:xigua_read/app/sq_color.dart';
+import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/model/novel.dart';
+import 'package:xigua_read/model/novel_info.dart';
+import 'package:xigua_read/novel/view_model/view_model_novel_shelf.dart';
 
 import 'package:xigua_read/public.dart';
+import 'package:xigua_read/router/manager_router.dart';
 import 'package:xigua_read/utility/screen.dart';
 import 'package:xigua_read/utility/toast.dart';
 
@@ -19,7 +26,6 @@ class BookshelfScene extends StatefulWidget {
 
 class BookshelfState extends State<BookshelfScene> with RouteAware {
   List<Novel> favoriteNovels = [];
-  // 滚动监听
   ScrollController scrollController = ScrollController();
   double navAlpha = 0;
 
@@ -27,10 +33,8 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
   void initState() {
     super.initState();
     fetchData();
-    print("合并分支");
 
     scrollController.addListener(() {
-      // 滚动监听位置
       var offset = scrollController.offset;
       if (offset < 0) {
         if (navAlpha != 0) {
@@ -53,11 +57,9 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
   Future<void> fetchData() async {
     try {
       List<Novel> favoriteNovels = [];
-      // 获取JSON数据
       List<dynamic> favoriteResponse = await Request.get(action: 'bookshelf');
       favoriteResponse.forEach((data) {
         favoriteNovels.add(Novel.fromJson(data));
-//        print("小说名字: " + data['bookname'] + " 小说bid: " + data['bid']);
       });
 
       setState(() {
@@ -75,10 +77,16 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
         width: 44,
         child: Image.asset('img/actionbar_checkin.png', color: iconColor),
       ),
-      Container(
-        height: kToolbarHeight,
-        width: 44,
-        child: Image.asset('img/actionbar_search.png', color: iconColor),
+      GestureDetector(
+        onTap: () {
+          APPRouter.instance.route(APPRouterRequestOption(
+              APPRouter.ROUTER_NAME_NOVEL_SEARCH, context));
+        },
+        child: Container(
+          height: kToolbarHeight,
+          width: 44,
+          child: Image.asset('img/actionbar_search.png', color: iconColor),
+        ),
       ),
       SizedBox(width: 15)
     ]);
@@ -127,12 +135,9 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
     List<Widget> children = [];
     var novels = favoriteNovels.sublist(1);
     novels.forEach((novel) {
-      // 遍历列表添加图书数据
       children.add(BookshelfItemView(novel));
     });
     var width = (Screen.width - 15 * 2 - 24 * 2) / 3;
-
-    // 添加图书选项
     children.add(GestureDetector(
       onTap: () {
         eventBus.emit(EventToggleTabBarIndex, 1);
@@ -158,7 +163,9 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
     return Scaffold(
       backgroundColor: SQColor.white,
       body: AnnotatedRegion(
-        value: navAlpha > 0.5 ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
+        value: navAlpha > 0.5
+            ? SystemUiOverlayStyle.dark
+            : SystemUiOverlayStyle.light,
         child: Stack(children: [
           RefreshIndicator(
             onRefresh: fetchData,
@@ -166,15 +173,13 @@ class BookshelfState extends State<BookshelfScene> with RouteAware {
               padding: EdgeInsets.only(top: 0),
               controller: scrollController,
               children: <Widget>[
-                // 第一本图书
-                favoriteNovels.length > 0 ? BookshelfHeader(favoriteNovels[0]) : Container(),
-                // 构建剩下书籍信息
+                favoriteNovels.length > 0
+                    ? BookshelfHeader(favoriteNovels[0])
+                    : Container(),
                 buildFavoriteView(),
               ],
             ),
           ),
-
-          // 滚动NavigationBar动画
           buildNavigationBar(),
         ]),
       ),

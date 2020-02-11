@@ -54,7 +54,7 @@ class ReaderSceneState extends State<ReaderScene> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
+//    routeObserver.subscribe(this, ModalRoute.of(context));
   }
 
   @override
@@ -65,7 +65,7 @@ class ReaderSceneState extends State<ReaderScene> with RouteAware {
   @override
   void dispose() {
     pageController.dispose();
-    routeObserver.unsubscribe(this);
+//    routeObserver.unsubscribe(this);
     super.dispose();
   }
 

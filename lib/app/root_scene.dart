@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/app/user_manager.dart';
+import 'package:xigua_read/base/structure/base_view.dart';
+import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
 import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
@@ -11,12 +13,16 @@ import 'package:xigua_read/utility/event_bus.dart';
 import '../global.dart';
 import 'constant.dart';
 
-class RootScene extends StatefulWidget {
+class RootScene extends BaseStatefulView {
   @override
-  State<StatefulWidget> createState() => RootSceneState();
+  BaseStatefulViewState<BaseStatefulView<BaseViewModel>, BaseViewModel> buildState() {
+    return RootSceneState();
+  }
+
 }
 
-class RootSceneState extends State<RootScene> {
+class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
+    with SingleTickerProviderStateMixin {
   int _tabIndex = 0;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
@@ -66,18 +72,22 @@ class RootSceneState extends State<RootScene> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    if (!isFinishSetup) {
-      return Container();
+  Image getTabIcon(int index) {
+    if (index == _tabIndex) {
+      return _tabSelectedImages[index];
+    } else {
+      return _tabImages[index];
     }
+  }
 
+  @override
+  Widget buildView(BuildContext context, BaseViewModel viewModel) {
     return Scaffold(
 //      appBar: AppBar(
 //        title: Text("测试"),
 //      ),
       body: IndexedStack(
-        children: <Widget>[
+        children: [
           BookshelfScene(),
           HomeScene(),
           MeScene(),
@@ -102,16 +112,22 @@ class RootSceneState extends State<RootScene> {
 
       ),
     );
-
-
   }
 
-  Image getTabIcon(int index) {
-    if (index == _tabIndex) {
-      return _tabSelectedImages[index];
-    } else {
-      return _tabImages[index];
-    }
+  @override
+  BaseViewModel buildViewModel(BuildContext context) {
+    // TODO: implement buildViewModel
+    return null;
+  }
+
+  @override
+  void initData() {
+    // TODO: implement initData
+  }
+
+  @override
+  void loadData(BuildContext context, BaseViewModel viewModel) {
+    // TODO: implement loadData
   }
 }
 

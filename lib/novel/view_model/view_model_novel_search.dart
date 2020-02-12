@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/model/novel/book_net.dart';
 
-
-
 class NovelBookSearchViewModel extends BaseViewModel {
   final NovelBookNetModel _netBookModel;
 
@@ -41,5 +39,6 @@ class NovelBookSearchViewModel extends BaseViewModel {
     return null;
   }
 }
+
 
 

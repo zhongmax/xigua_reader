@@ -79,7 +79,14 @@ class _SearchNovelState
                         textAlignVertical: TextAlignVertical.center,
                         focusNode: _focusNode,
                         onChanged: (data) {
-
+                          inputStreamController.sink.add(data);
+                        },
+                        onSubmitted: (data) {
+                          HashMap<String, String> params = HashMap();
+                          params["search_key"] = data;
+                          APPRouter.instance.route(APPRouterRequestOption(
+                              APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
+                              params: params));
                         },
                         style: TextStyle(
                             textBaseline: TextBaseline.alphabetic,
@@ -95,6 +102,8 @@ class _SearchNovelState
               ],
             ),
           ),
+          // 输入框抵住键盘
+          resizeToAvoidBottomPadding: false,
           body: Builder(builder: (context) {
             List<Widget> stackChildren = [];
             stackChildren
@@ -108,8 +117,10 @@ class _SearchNovelState
                 });
               }));
             }
-            return Stack(
-              children: stackChildren,
+            return Container(
+              child: Stack(
+                children: stackChildren,
+              ),
             );
           }),
         ),
@@ -157,7 +168,6 @@ class _SearchStackBottomWidget extends StatelessWidget {
   final List<String> hotWords;
 
   _SearchStackBottomWidget(this.hotWords);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -214,6 +224,7 @@ class _SearchStackAutoCompleteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("auto是: " + autoCompleteWords.toString());
     return Container(
       child: Column(
         children: <Widget>[

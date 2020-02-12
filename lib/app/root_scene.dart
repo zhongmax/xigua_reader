@@ -5,6 +5,7 @@ import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/app/user_manager.dart';
 import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/base/structure/base_view_model.dart';
+import 'package:xigua_read/base/util/utils_toast.dart';
 import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
 import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
@@ -36,6 +37,8 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
     Image.asset('img/tab_bookstore_p.png'),
     Image.asset('img/tab_me_p.png'),
   ];
+  DateTime _lastClickTime;
+  TabController primaryTC;
 
   @override
   void initState() {
@@ -83,17 +86,25 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
   @override
   Widget buildView(BuildContext context, BaseViewModel viewModel) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text("测试"),
-//      ),
-      body: IndexedStack(
-        children: [
-          BookshelfScene(),
-          HomeScene(),
-          MeScene(),
-        ],
-        index: _tabIndex,
+      body: WillPopScope(
+        child: IndexedStack(
+          children: [
+            BookshelfScene(),
+            HomeScene(),
+            MeScene(),
+          ],
+          index: _tabIndex,
 
+        ),
+        onWillPop: () async {
+          if (_lastClickTime == null || DateTime.now().difference(_lastClickTime) > Duration(seconds: 1)) {
+            // 两次点击间隔超过1秒则重新计时
+            _lastClickTime = DateTime.now();
+            ToastUtils.showToast("再次点击退出");
+            return false;
+          }
+          return true;
+        },
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: Colors.white,
@@ -122,7 +133,7 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
 
   @override
   void initData() {
-    // TODO: implement initData
+    primaryTC = TabController(length: 3, vsync: this);
   }
 
   @override

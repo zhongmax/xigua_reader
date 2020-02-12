@@ -37,6 +37,10 @@ dependencies:
   dio: ^2.1.0
   # json与model转换
   json_annotation: ^3.0.0
+  # flutter 团队维护的一个工具合集
+  palette_generator: ^0.2.0
+  extended_nested_scroll_view: ^0.3.6
+  flutter_vector_icons: ^0.2.1
 
 dev_dependencies:
   flutter_test:

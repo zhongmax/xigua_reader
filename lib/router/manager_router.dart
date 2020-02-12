@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xigua_read/novel/view/novel_book_intro.dart';
+import 'package:xigua_read/novel/view/novel_book_search_result.dart';
 import 'package:xigua_read/search/search_novel.dart';
 import 'base_router_manager.dart';
 
@@ -37,15 +39,15 @@ class APPRouter extends BaseRouterManager {
     }
     // 根据targetName跳转页面
     switch (option.targetName) {
-//      case ROUTER_NAME_NOVEL_INTRO:
-//        jumpToTarget(option, NovelBookIntroView.getPageView(option));
-//        break;
+      case ROUTER_NAME_NOVEL_INTRO:
+        jumpToTarget(option, NovelBookIntroView.getPageView(option));
+        break;
       case ROUTER_NAME_NOVEL_SEARCH:
         jumpToTarget(option, SearchNovel.getPageView());
         break;
-//      case ROUTER_NAME_NOVEL_SEARCH_RESULT:
-//        jumpToTarget(option, NovelSearchResultView.getPageView(option));
-//        break;
+      case ROUTER_NAME_NOVEL_SEARCH_RESULT:
+        jumpToTarget(option, NovelSearchResultView.getPageView(option));
+        break;
       case ROUTER_NAME_NOVEL_READER:
 //        jumpToTarget(option, NovelBookReaderView.getPageView(option));
         break;

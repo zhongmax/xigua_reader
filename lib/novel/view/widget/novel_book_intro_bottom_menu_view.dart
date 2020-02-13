@@ -5,9 +5,9 @@ import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/base/util/utils_toast.dart';
 import 'package:xigua_read/model/novel_detail.dart';
 import 'package:xigua_read/model/novel_info.dart';
+import 'package:xigua_read/novel/view/novel_book_reader.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_shelf.dart';
 import 'package:xigua_read/router/manager_router.dart';
-
 
 class NovelIntroBottomMenuView
     extends BaseStatefulView<NovelBookShelfViewModel> {
@@ -16,12 +16,14 @@ class NovelIntroBottomMenuView
   NovelIntroBottomMenuView(this.bookInfo);
 
   @override
-  BaseStatefulViewState<BaseStatefulView<BaseViewModel>, NovelBookShelfViewModel> buildState() {
+  BaseStatefulViewState<BaseStatefulView<BaseViewModel>,
+      NovelBookShelfViewModel> buildState() {
     return NovelIntroBottomMenuViewState();
   }
 }
 
-class NovelIntroBottomMenuViewState extends BaseStatefulViewState<NovelIntroBottomMenuView,NovelBookShelfViewModel>{
+class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
+    NovelIntroBottomMenuView, NovelBookShelfViewModel> {
   @override
   Widget buildView(BuildContext context, NovelBookShelfViewModel viewModel) {
     if (widget.bookInfo == null) {
@@ -37,6 +39,7 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<NovelIntroBott
       bool isBookShelfBook = false;
 
       for (NovelBookInfo info in currentBookShelf) {
+        print("NovelBookInfo数据为: " + info.title);
         if (widget.bookInfo.id == info.bookId) {
           currentBookInfo = info;
           isBookShelfBook = true;
@@ -56,19 +59,16 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<NovelIntroBott
                 Expanded(
                   child: InkWell(
                     onTap: () {
-
-                      if(!isBookShelfBook) {
+                      // TODO 追书与不追书点击有问题
+                      if (!isBookShelfBook) {
                         viewModel.addBookToShelf(NovelBookInfo()
                           ..bookId = widget.bookInfo.id
                           ..title = widget.bookInfo.title
                           ..cover = Uri.decodeComponent(
-                              widget.bookInfo.cover
-                                  .split("/agent/")
-                                  .last));
-                      }else{
+                              widget.bookInfo.cover.split("/agent/").last));
+                      } else {
                         viewModel.removeBookFromShelf(widget.bookInfo.id);
                       }
-
                     },
                     child: Container(
                       color: Colors.white,
@@ -90,11 +90,11 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<NovelIntroBott
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                    	// TODO 添加阅读页面
-//                      APPRouter.instance.route(
-//                          NovelBookReaderView.buildIntent(
-//                              context,
-//                              currentBookInfo));
+                      // TODO Issues: 阅读页面, 返回后下方没有导航按键 (2/13 19:18
+                      APPRouter.instance.route(
+                          NovelBookReaderView.buildIntent(
+                              context,
+                              currentBookInfo));
                     },
                     child: Container(
                       color: Colors.green,
@@ -151,6 +151,5 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<NovelIntroBott
   void loadData(BuildContext context, NovelBookShelfViewModel viewModel) {}
 
   @override
-  void initData() {
-  }
+  void initData() {}
 }

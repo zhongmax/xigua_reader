@@ -73,8 +73,8 @@ class HomeListViewState extends State<HomeListView> with AutomaticKeepAliveClien
       // 取数据格式
       // modules[index].menus[index].title
 
-      print("数据：");
-      print(carouselInfos);
+//      print("数据：");
+////      print(carouselInfos);
       setState(() {
         this.modules = modules;
         this.carouselInfos = carouselInfos;

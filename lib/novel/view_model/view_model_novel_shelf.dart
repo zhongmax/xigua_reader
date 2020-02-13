@@ -23,6 +23,7 @@ class NovelBookShelfViewModel extends BaseViewModel {
     bookshelfInfo?.currentBookShelf?.add(book);
     notifyListeners();
   }
+
   void removeBookFromShelf(String bookId) async{
     _dbBookModel?.removeBook(bookId);
     NovelBookInfo targetBook;

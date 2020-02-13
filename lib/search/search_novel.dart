@@ -32,10 +32,10 @@ class _SearchNovelState
   @override
   Widget buildView(BuildContext context, NovelBookSearchViewModel viewModel) {
     SearchContentEntity contentEntity = viewModel.contentEntity;
-    print("SearchContentEntity的数据有");
-    for (int i = 0; i < contentEntity.searchHotWord.length; i++) {
-      print(contentEntity.searchHotWord[i]);
-    }
+//    print("SearchContentEntity的数据有");
+//    for (int i = 0; i < contentEntity.searchHotWord.length; i++) {
+//      print(contentEntity.searchHotWord[i]);
+//    }
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,

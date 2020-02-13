@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xigua_read/novel/view/novel_book_intro.dart';
+import 'package:xigua_read/novel/view/novel_book_reader.dart';
 import 'package:xigua_read/novel/view/novel_book_search_result.dart';
 import 'package:xigua_read/search/search_novel.dart';
 import 'base_router_manager.dart';
@@ -49,7 +50,7 @@ class APPRouter extends BaseRouterManager {
         jumpToTarget(option, NovelSearchResultView.getPageView(option));
         break;
       case ROUTER_NAME_NOVEL_READER:
-//        jumpToTarget(option, NovelBookReaderView.getPageView(option));
+        jumpToTarget(option, NovelBookReaderView.getPageView(option));
         break;
 //      case ROUTER_NAME_NOVEL_LEADER_BOARD:
 //        jumpToTarget(option, NovelLeaderBoardView.getPageView(option));

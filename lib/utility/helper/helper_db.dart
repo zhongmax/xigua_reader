@@ -1,4 +1,3 @@
-
 import 'package:sqflite/sqflite.dart';
 import 'package:xigua_read/base/db/manager_db.dart';
 import 'package:xigua_read/model/novel_info.dart';

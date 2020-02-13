@@ -1,9 +1,6 @@
-
-
 import 'package:xigua_read/base/structure/base_model.dart';
+import 'package:xigua_read/model/novel_info.dart';
 import 'package:xigua_read/utility/helper/helper_db.dart';
-
-import '../novel_info.dart';
 
 class NovelBookDBModel extends BaseModel {
   final DBHelper _dbHelper;
@@ -19,7 +16,9 @@ class NovelBookDBModel extends BaseModel {
   void addBook(NovelBookInfo book){
     _dbHelper.insertOrReplaceToDB(book);
     if(!bookshelfInfo.currentBookShelf.contains(book)) {
+
       bookshelfInfo.currentBookShelf.add(book);
+
     }
   }
   void removeBook(String bookId){

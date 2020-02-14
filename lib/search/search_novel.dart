@@ -224,7 +224,6 @@ class _SearchStackAutoCompleteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("auto是: " + autoCompleteWords.toString());
     return Container(
       child: Column(
         children: <Widget>[

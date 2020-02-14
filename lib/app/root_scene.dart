@@ -9,6 +9,7 @@ import 'package:xigua_read/base/util/utils_toast.dart';
 import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
 import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
+import 'package:xigua_read/novel/view/novel_book_shelf.dart';
 import 'package:xigua_read/utility/event_bus.dart';
 
 import '../global.dart';
@@ -89,7 +90,8 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
       body: WillPopScope(
         child: IndexedStack(
           children: [
-            BookshelfScene(),
+            NovelBookShelfView(),
+//            BookshelfScene(),
             HomeScene(),
             MeScene(),
           ],

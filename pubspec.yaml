@@ -48,6 +48,7 @@ dependencies:
   flutter_widgets: ^0.1.6
   autocomplete_textfield: ^1.7.3
   image_picker: ^0.6.0+9
+  flutter_swiper : ^1.1.6
 
 
 dev_dependencies:

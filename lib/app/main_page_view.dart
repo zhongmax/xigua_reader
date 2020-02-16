@@ -6,6 +6,7 @@ import 'package:xigua_read/bookshelf/novel_book_shelf.dart';
 import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
 import 'package:xigua_read/router/manager_router.dart';
+import 'package:xigua_read/ui/home/home_page.dart';
 
 class MainPageView extends BaseStatefulView {
   @override
@@ -68,7 +69,8 @@ class MainPageViewState
             child: TabBarView(
               children: [
                 NovelBookShelfView(),
-                HomeScene(),
+//                HomeScene(),
+                TabHomePage(),
                 MeScene(),
               ],
               controller: primaryTC,

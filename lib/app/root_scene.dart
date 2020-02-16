@@ -10,6 +10,7 @@ import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
 import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
 import 'package:xigua_read/novel/view/novel_book_shelf.dart';
+import 'package:xigua_read/ui/home/home_page.dart';
 import 'package:xigua_read/utility/event_bus.dart';
 
 import '../global.dart';
@@ -17,10 +18,10 @@ import 'constant.dart';
 
 class RootScene extends BaseStatefulView {
   @override
-  BaseStatefulViewState<BaseStatefulView<BaseViewModel>, BaseViewModel> buildState() {
+  BaseStatefulViewState<BaseStatefulView<BaseViewModel>, BaseViewModel>
+      buildState() {
     return RootSceneState();
   }
-
 }
 
 class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
@@ -61,7 +62,6 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
         _tabIndex = arg;
       });
     });
-
   }
 
   @override
@@ -91,15 +91,16 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
         child: IndexedStack(
           children: [
             NovelBookShelfView(),
-//            BookshelfScene(),
-            HomeScene(),
+//            HomeScene(),
+            TabHomePage(),
             MeScene(),
           ],
           index: _tabIndex,
-
         ),
         onWillPop: () async {
-          if (_lastClickTime == null || DateTime.now().difference(_lastClickTime) > Duration(seconds: 1)) {
+          if (_lastClickTime == null ||
+              DateTime.now().difference(_lastClickTime) >
+                  Duration(seconds: 1)) {
             // 两次点击间隔超过1秒则重新计时
             _lastClickTime = DateTime.now();
             ToastUtils.showToast("再次点击退出");
@@ -122,7 +123,6 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
             _tabIndex = index;
           });
         },
-
       ),
     );
   }
@@ -143,4 +143,3 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
     // TODO: implement loadData
   }
 }
-

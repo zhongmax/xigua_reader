@@ -32,7 +32,7 @@ class HomeSceneState extends State<HomeScene> {
                 Tab(text: '精选'),
                 Tab(text: '女生'),
                 Tab(text: '男生'),
-                Tab(text: '漫画'),
+                Tab(text: '出版'),
               ],
             ),
           ),

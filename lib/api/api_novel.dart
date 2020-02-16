@@ -1,4 +1,5 @@
 import 'package:xigua_read/base/http/manager_net_request.dart';
+import 'package:xigua_read/data/dio_utils.dart';
 import 'package:xigua_read/model/novel_book_chapter.dart';
 import 'package:xigua_read/model/novel_book_key_word_search.dart';
 import 'package:xigua_read/model/novel_book_recommend.dart';
@@ -187,6 +188,15 @@ class NovelApi {
     }
     return result;
   }
+
+  ///获取首页小说列表
+  Future<Map> getCategories(queryParameters) async {
+    return await DioUtils().request<String>(
+      "/book/by-categories",
+      queryParameters: queryParameters,
+    );
+  }
+
 }
 
 class BaseResponse<T> {

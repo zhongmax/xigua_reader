@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/base/util/utils_toast.dart';
+import 'package:xigua_read/db/db_helper.dart';
 import 'package:xigua_read/model/novel_detail.dart';
 import 'package:xigua_read/model/novel_info.dart';
 import 'package:xigua_read/novel/view/novel_book_reader.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_shelf.dart';
+import 'package:xigua_read/public.dart';
 import 'package:xigua_read/router/manager_router.dart';
 
 class NovelIntroBottomMenuView
@@ -24,6 +28,22 @@ class NovelIntroBottomMenuView
 
 class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
     NovelIntroBottomMenuView, NovelBookShelfViewModel> {
+
+  var _dbHelper = DbHelper();
+  BookshelfBean _bookshelfBean;
+  StreamSubscription booksSubscription;
+  bool isBookShelfBook = false;
+
+  @override
+  void initState() {
+    super.initState();
+    booksSubscription = eventBus.on<BooksEvent>().listen((event) {
+      print("novel book intro bottom menu 生命周期");
+      getDbData();
+    });
+    getData();
+  }
+
   @override
   Widget buildView(BuildContext context, NovelBookShelfViewModel viewModel) {
     if (widget.bookInfo == null) {
@@ -36,7 +56,7 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
         ..bookId = widget.bookInfo.id
         ..cover = widget.bookInfo.cover
         ..title = widget.bookInfo.title;
-      bool isBookShelfBook = false;
+//      bool isBookShelfBook = false;
 
       for (NovelBookInfo info in currentBookShelf) {
         print("NovelBookInfo数据为: " + info.title);
@@ -61,13 +81,30 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
                     onTap: () {
                       // TODO 追书与不追书点击有问题
                       if (!isBookShelfBook) {
-                        viewModel.addBookToShelf(NovelBookInfo()
-                          ..bookId = widget.bookInfo.id
-                          ..title = widget.bookInfo.title
-                          ..cover = Uri.decodeComponent(
-                              widget.bookInfo.cover.split("/agent/").last));
+//                        viewModel.addBookToShelf(NovelBookInfo()
+//                          ..bookId = widget.bookInfo.id
+//                          ..title = widget.bookInfo.title
+//                          ..cover = Uri.decodeComponent(
+//                              widget.bookInfo.cover.split("/agent/").last));
+                        var bean = BookshelfBean(
+                            widget.bookInfo.title,
+                            widget.bookInfo.cover,
+                            "0",
+                            "",
+                            widget.bookInfo.id,
+                            0,
+                            0,
+                            0);
+                        print("bean的数据: " + bean.title);
+                        _dbHelper.addBookshelfItem(bean);
+                        this._bookshelfBean = bean;
+                        setState(() {
+                          isBookShelfBook = true;
+                        });
+                        print("要进eventBus了");
+                        eventBus.fire(new BooksEvent());
                       } else {
-                        viewModel.removeBookFromShelf(widget.bookInfo.id);
+//                        viewModel.removeBookFromShelf(widget.bookInfo.id);
                       }
                     },
                     child: Container(
@@ -91,10 +128,8 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
                   child: InkWell(
                     onTap: () {
                       // TODO Issues: 阅读页面, 返回后下方没有导航按键 (2/13 19:18
-                      APPRouter.instance.route(
-                          NovelBookReaderView.buildIntent(
-                              context,
-                              currentBookInfo));
+                      APPRouter.instance.route(NovelBookReaderView.buildIntent(
+                          context, currentBookInfo));
                     },
                     child: Container(
                       color: Colors.green,
@@ -147,9 +182,39 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
     );
   }
 
+  void getData() {
+    getDbData();
+  }
+
+  void getDbData() async {
+    print("到bottom getDbData了吗？");
+    var list = await _dbHelper.queryBooks(widget.bookInfo.id);
+    if (list != null) {
+      print("getDbData1");
+      _bookshelfBean = list;
+      setState(() {
+        isBookShelfBook = true;
+      });
+    } else {
+      print("getDbData2");
+      setState(() {
+        isBookShelfBook = false;
+      });
+    }
+    print("list数据为: " + list.title);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    booksSubscription.cancel();
+  }
+
   @override
   void loadData(BuildContext context, NovelBookShelfViewModel viewModel) {}
 
   @override
   void initData() {}
+
+
 }

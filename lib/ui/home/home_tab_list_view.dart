@@ -146,7 +146,6 @@ class _HomeTabListViewState extends State<HomeTabListView>
 			height: 180,
 			child: Swiper(
 				itemBuilder: (BuildContext context, int index) {
-					print("index = $index");
 					return Container(
 						margin: const EdgeInsets.only(top: 16, bottom: 10),
 						decoration: BoxDecoration(

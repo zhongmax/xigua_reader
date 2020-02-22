@@ -24,7 +24,7 @@ class UserManager {
   logout() {
     this.user = null;
     preferences.remove('user');
-    eventBus.emit(EventUserLogout);
+//    eventBus.emit(EventUserLogout);
   }
 
   login(Map<String, dynamic> userJson) {
@@ -32,7 +32,7 @@ class UserManager {
     this.user = user;
     saveUser();
 
-    eventBus.emit(EventUserLogin);
+//    eventBus.emit(EventUserLogin);
   }
 
   bool get isLogin {

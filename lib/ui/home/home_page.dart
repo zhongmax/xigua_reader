@@ -11,13 +11,13 @@ class TabHomePage extends StatefulWidget {
 class _TabHomePageState extends State<TabHomePage> {
 	@override
 	Widget build(BuildContext context) {
-		print("在这个页面上吗？");
 		return DefaultTabController(
 			length: 4,
 			child: Scaffold(
 				body: SafeArea(
 					child: Column(
 						children: <Widget>[
+							SizedBox(height: 10,),
 							Flex(
 								direction: Axis.horizontal,
 								children: <Widget>[

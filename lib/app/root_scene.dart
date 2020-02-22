@@ -3,28 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/app/user_manager.dart';
-import 'package:xigua_read/base/structure/base_view.dart';
-import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/base/util/utils_toast.dart';
 import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
-import 'package:xigua_read/home/home_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
-import 'package:xigua_read/novel/view/novel_book_shelf.dart';
+//import 'package:xigua_read/novel/view/novel_book_shelf.dart';
 import 'package:xigua_read/ui/home/home_page.dart';
 import 'package:xigua_read/utility/event_bus.dart';
 
 import '../global.dart';
 import 'constant.dart';
 
-class RootScene extends BaseStatefulView {
+class RootScene extends StatefulWidget {
   @override
-  BaseStatefulViewState<BaseStatefulView<BaseViewModel>, BaseViewModel>
-      buildState() {
-    return RootSceneState();
-  }
+  State<StatefulWidget> createState() => RootSceneState();
 }
 
-class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
+class RootSceneState extends State<RootScene>
     with SingleTickerProviderStateMixin {
   int _tabIndex = 0;
   bool isFinishSetup = false;
@@ -45,28 +39,29 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
   @override
   void initState() {
     super.initState();
+    primaryTC = TabController(length: 3, vsync: this);
 
     // 开始
     setupApp();
 
-    eventBus.on(EventUserLogin, (arg) {
-      setState(() {});
-    });
-
-    eventBus.on(EventUserLogout, (arg) {
-      setState(() {});
-    });
-
-    eventBus.on(EventToggleTabBarIndex, (arg) {
-      setState(() {
-        _tabIndex = arg;
-      });
-    });
+//    eventBus.on(EventUserLogin, (arg) {
+//      setState(() {});
+//    });
+//
+//    eventBus.on(EventUserLogout, (arg) {
+//      setState(() {});
+//    });
+//
+//    eventBus.on(EventToggleTabBarIndex, (arg) {
+//      setState(() {
+//        _tabIndex = arg;
+//      });
+//    });
   }
 
   @override
   void dispose() {
-    eventBus.off(EventUserLogin);
+//    eventBus.off(EventUserLogin);
   }
 
   setupApp() async {
@@ -85,13 +80,12 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
   }
 
   @override
-  Widget buildView(BuildContext context, BaseViewModel viewModel) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: WillPopScope(
         child: IndexedStack(
           children: [
-            NovelBookShelfView(),
-//            HomeScene(),
+            BookshelfScene(),
             TabHomePage(),
             MeScene(),
           ],
@@ -125,21 +119,5 @@ class RootSceneState extends BaseStatefulViewState<RootScene, BaseViewModel>
         },
       ),
     );
-  }
-
-  @override
-  BaseViewModel buildViewModel(BuildContext context) {
-    // TODO: implement buildViewModel
-    return null;
-  }
-
-  @override
-  void initData() {
-    primaryTC = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void loadData(BuildContext context, BaseViewModel viewModel) {
-    // TODO: implement loadData
   }
 }

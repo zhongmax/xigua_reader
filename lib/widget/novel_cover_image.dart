@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:xigua_read/app/sq_color.dart';
+import 'package:xigua_read/utility/utils.dart';
 
 class NovelCoverImage extends StatelessWidget {
   final String imgUrl;
@@ -11,9 +12,10 @@ class NovelCoverImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: Image(
-        image: CachedNetworkImageProvider(imgUrl),
+        image: CachedNetworkImageProvider(this.imgUrl),
         fit: BoxFit.cover,
         width: width,
         height: height,

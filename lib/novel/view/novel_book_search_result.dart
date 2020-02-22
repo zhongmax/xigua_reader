@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/model/novel_book_key_word_search.dart';
+import 'package:xigua_read/novel/view/novel_book_intro.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_search.dart';
 import 'package:xigua_read/router/manager_router.dart';
 
@@ -13,8 +14,8 @@ class NovelSearchResultView
 
   final String searchKeyWord;
 
-  static NovelSearchResultView getPageView(APPRouterRequestOption option) {
-    return NovelSearchResultView(option.params["search_key"]);
+  static NovelSearchResultView getPageView(String searchKeyWord) {
+    return NovelSearchResultView(searchKeyWord);
   }
 
   @override
@@ -38,10 +39,16 @@ class NovelSearchResultView
               return Container(
                 child: InkWell(
                   onTap: () {
-                    APPRouter.instance.route(APPRouterRequestOption(
-                        APPRouter.ROUTER_NAME_NOVEL_INTRO, context, params: {
-                      "bookId": keyWordSearchResult?.books[index]?.id
-                    }));
+//                    APPRouter.instance.route(APPRouterRequestOption(
+//                        APPRouter.ROUTER_NAME_NOVEL_INTRO, context, params: {
+//                      "bookId": keyWordSearchResult?.books[index]?.id
+//                    }));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                NovelBookIntroView.getPageView(
+                                    keyWordSearchResult?.books[index]?.id)));
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

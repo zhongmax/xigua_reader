@@ -8,6 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/model/novel/book_net.dart';
+import 'package:xigua_read/novel/view/novel_book_intro.dart';
+import 'package:xigua_read/novel/view/novel_book_search_result.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_search.dart';
 import 'package:xigua_read/router/manager_router.dart';
 
@@ -72,7 +74,7 @@ class _SearchNovelState
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Color(0xFFF5F5F5)),
-                      alignment: Alignment.center,
+//                      alignment: Alignment.center,
                       child: TextField(
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.search,
@@ -84,9 +86,14 @@ class _SearchNovelState
                         onSubmitted: (data) {
                           HashMap<String, String> params = HashMap();
                           params["search_key"] = data;
-                          APPRouter.instance.route(APPRouterRequestOption(
-                              APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
-                              params: params));
+//                          APPRouter.instance.route(APPRouterRequestOption(
+//                              APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
+//                              params: params));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      NovelSearchResultView.getPageView(data)));
                         },
                         style: TextStyle(
                             textBaseline: TextBaseline.alphabetic,
@@ -168,6 +175,7 @@ class _SearchStackBottomWidget extends StatelessWidget {
   final List<String> hotWords;
 
   _SearchStackBottomWidget(this.hotWords);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -198,10 +206,16 @@ class _SearchStackBottomWidget extends StatelessWidget {
                           onPressed: () {
                             HashMap<String, String> params = HashMap();
                             params["search_key"] = word;
-                            APPRouter.instance.route(APPRouterRequestOption(
-                                APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT,
+//                            APPRouter.instance.route(APPRouterRequestOption(
+//                                APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT,
+//                                context,
+//                                params: params));
+                            Navigator.push(
                                 context,
-                                params: params));
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        NovelSearchResultView.getPageView(
+                                            word)));
                           },
                         ))
                     .toList(),
@@ -242,9 +256,15 @@ class _SearchStackAutoCompleteWidget extends StatelessWidget {
                   onTap: () {
                     HashMap<String, String> params = HashMap();
                     params["search_key"] = autoCompleteWords[index];
-                    APPRouter.instance.route(APPRouterRequestOption(
-                        APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
-                        params: params));
+//                    APPRouter.instance.route(APPRouterRequestOption(
+//                        APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
+//                        params: params));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                          NovelSearchResultView.getPageView(
+                            autoCompleteWords[index])));
                   },
                 ),
               );

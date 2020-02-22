@@ -25,8 +25,8 @@ class NovelBookIntroView extends BaseStatefulView<NovelBookIntroViewModel> {
 
   final String targetBookId;
 
-  static NovelBookIntroView getPageView(APPRouterRequestOption option) {
-    return NovelBookIntroView(option.params["bookId"]);
+  static NovelBookIntroView getPageView(String targetBookId) {
+    return NovelBookIntroView(targetBookId);
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xigua_read/app/splash_screen.dart';
 import 'package:xigua_read/provider_setup.dart';
 
 import 'app/main_page_view.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
               title: 'Flutter Novel Reader',
               theme: ThemeData(primaryColor:Colors.white,),
-              home: RootScene());
+              home: SplashScreen());
         }));
   }
 }

@@ -141,6 +141,7 @@ class BookshelfSceneState extends State<BookshelfScene>
 						RefreshIndicator(
 							onRefresh: getDbData,
 							child: ListView(
+								physics: const AlwaysScrollableScrollPhysics(),
 								padding: EdgeInsets.only(top: 0),
 								controller: scrollController,
 								children: <Widget>[

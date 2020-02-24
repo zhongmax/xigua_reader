@@ -103,15 +103,15 @@ class DioUtils {
       return;
     }
     try {
-      print("----------------Http Log Start----------------" +
-          "\n[statusCode]:   " +
-          response.statusCode.toString() +
-          "\n[request   ]:   " +
-          _getOptionsStr(response.request));
-      _printDataStr("reqdata ", response.request.data);
-      _printDataStr("queryParameters ", response.request.queryParameters);
-      _printDataStr("response", response.data);
-      print("----------------Http Log Stop----------------");
+//      print("----------------Http Log Start----------------" +
+//          "\n[statusCode]:   " +
+//          response.statusCode.toString() +
+//          "\n[request   ]:   " +
+//          _getOptionsStr(response.request));
+//      _printDataStr("reqdata ", response.request.data);
+//      _printDataStr("queryParameters ", response.request.queryParameters);
+//      _printDataStr("response", response.data);
+//      print("----------------Http Log Stop----------------");
     } catch (ex) {
       print("Http Log" + " error......");
     }

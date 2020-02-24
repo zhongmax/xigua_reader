@@ -64,11 +64,11 @@ class _HomeTabListViewState extends State<HomeTabListView>
 		String imageUrl = Utils.convertImageUrl(_list[position].cover);
 		return InkWell(
 			onTap: () {
-//				Navigator.push(
-//					context,
-//					new MaterialPageRoute(
-//						builder: (context) => NovelBookIntroView(_list[position].id, false)),
-//				);
+				Navigator.push(
+					context,
+					new MaterialPageRoute(
+						builder: (context) => NovelBookIntroView.getPageView(_list[position].id)),
+				);
 			},
 			child: Container(
 				padding:
@@ -156,6 +156,7 @@ class _HomeTabListViewState extends State<HomeTabListView>
 							borderRadius: BorderRadius.all(Radius.circular(5))),
 					);
 				},
+				autoplay: true,
 				autoplayDisableOnInteraction: true,
 				itemHeight: 180,
 				itemCount: 5,

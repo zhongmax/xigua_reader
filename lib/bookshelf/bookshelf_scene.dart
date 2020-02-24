@@ -126,11 +126,11 @@ class BookshelfSceneState extends State<BookshelfScene>
 		Widget build(BuildContext context) {
 			// TODO 绘制书架页面 -2/14 21:30
 			// 书架页面完成, 还有一些bug -2/15 08:47
-			print("------------------构建画面------------------");
-			for (int i = 0; i < _listBean.length; i++) {
-				print(_listBean[i].title);
-			}
-			print("------------------构建画面结束------------------");
+//			print("------------------构建画面------------------");
+//			for (int i = 0; i < _listBean.length; i++) {
+//				print(_listBean[i].title);
+//			}
+//			print("------------------构建画面结束------------------");
 			return Scaffold(
 				backgroundColor: SQColor.white,
 				body: AnnotatedRegion(

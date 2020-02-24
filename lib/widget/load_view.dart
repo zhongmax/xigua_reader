@@ -9,17 +9,17 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView>
 	with SingleTickerProviderStateMixin {
 	List<String> _imageList = [
-		"images/icon_load_1.png",
-		"images/icon_load_2.png",
-		"images/icon_load_3.png",
-		"images/icon_load_4.png",
-		"images/icon_load_5.png",
-		"images/icon_load_6.png",
-		"images/icon_load_7.png",
-		"images/icon_load_8.png",
-		"images/icon_load_9.png",
-		"images/icon_load_10.png",
-		"images/icon_load_11.png",
+		"img/icon_load_1.png",
+		"img/icon_load_2.png",
+		"img/icon_load_3.png",
+		"img/icon_load_4.png",
+		"img/icon_load_5.png",
+		"img/icon_load_6.png",
+		"img/icon_load_7.png",
+		"img/icon_load_8.png",
+		"img/icon_load_9.png",
+		"img/icon_load_10.png",
+		"img/icon_load_11.png",
 	];
 	Animation<int> _animation;
 	AnimationController _controller;
@@ -95,7 +95,7 @@ class _FailureViewState extends State<FailureView> {
 				crossAxisAlignment: CrossAxisAlignment.center,
 				children: <Widget>[
 					Image.asset(
-						"images/icon_network_error.png",
+						"img/icon_network_error.png",
 						width: 150,
 						height: 150,
 					),

@@ -43,6 +43,7 @@ class NovelSearchResultView
 //                        APPRouter.ROUTER_NAME_NOVEL_INTRO, context, params: {
 //                      "bookId": keyWordSearchResult?.books[index]?.id
 //                    }));
+                  print("图书ID为: " + keyWordSearchResult.books[index].id);
                     Navigator.push(
                         context,
                         MaterialPageRoute(

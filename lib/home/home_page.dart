@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/search/search_novel.dart';
-import 'package:xigua_read/ui/home/home_tab_list_view.dart';
+import 'package:xigua_read/home/home_tab_list_view.dart';
 
 class TabHomePage extends StatefulWidget {
 	@override

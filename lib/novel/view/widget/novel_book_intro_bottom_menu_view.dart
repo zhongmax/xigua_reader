@@ -11,7 +11,6 @@ import 'package:xigua_read/model/novel_info.dart';
 import 'package:xigua_read/novel/view/novel_book_reader.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_shelf.dart';
 import 'package:xigua_read/public.dart';
-import 'package:xigua_read/router/manager_router.dart';
 
 class NovelIntroBottomMenuView
     extends BaseStatefulView<NovelBookShelfViewModel> {
@@ -128,8 +127,8 @@ class NovelIntroBottomMenuViewState extends BaseStatefulViewState<
                   child: InkWell(
                     onTap: () {
                       // TODO Issues: 阅读页面, 返回后下方没有导航按键 (2/13 19:18
-                      APPRouter.instance.route(NovelBookReaderView.buildIntent(
-                          context, currentBookInfo));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                        NovelBookReaderView(currentBookInfo)));
                     },
                     child: Container(
                       color: Colors.green,

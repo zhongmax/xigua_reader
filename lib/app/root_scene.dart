@@ -2,16 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xigua_read/app/sq_color.dart';
-import 'package:xigua_read/app/user_manager.dart';
 import 'package:xigua_read/base/util/utils_toast.dart';
 import 'package:xigua_read/bookshelf/bookshelf_scene.dart';
 import 'package:xigua_read/me/me_scene.dart';
-//import 'package:xigua_read/novel/view/novel_book_shelf.dart';
-import 'package:xigua_read/ui/home/home_page.dart';
-import 'package:xigua_read/utility/event_bus.dart';
+import 'package:xigua_read/home/home_page.dart';
 
 import '../global.dart';
-import 'constant.dart';
 
 class RootScene extends StatefulWidget {
   @override
@@ -43,20 +39,6 @@ class RootSceneState extends State<RootScene>
 
     // 开始
     setupApp();
-
-//    eventBus.on(EventUserLogin, (arg) {
-//      setState(() {});
-//    });
-//
-//    eventBus.on(EventUserLogout, (arg) {
-//      setState(() {});
-//    });
-//
-//    eventBus.on(EventToggleTabBarIndex, (arg) {
-//      setState(() {
-//        _tabIndex = arg;
-//      });
-//    });
   }
 
   @override

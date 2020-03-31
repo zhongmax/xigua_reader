@@ -8,10 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/base/structure/base_view_model.dart';
 import 'package:xigua_read/model/novel/book_net.dart';
-import 'package:xigua_read/novel/view/novel_book_intro.dart';
 import 'package:xigua_read/novel/view/novel_book_search_result.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_search.dart';
-import 'package:xigua_read/router/manager_router.dart';
 
 class SearchNovel extends BaseStatefulView<NovelBookSearchViewModel> {
   static SearchNovel getPageView() {
@@ -86,9 +84,7 @@ class _SearchNovelState
                         onSubmitted: (data) {
                           HashMap<String, String> params = HashMap();
                           params["search_key"] = data;
-//                          APPRouter.instance.route(APPRouterRequestOption(
-//                              APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
-//                              params: params));
+
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -206,10 +202,7 @@ class _SearchStackBottomWidget extends StatelessWidget {
                           onPressed: () {
                             HashMap<String, String> params = HashMap();
                             params["search_key"] = word;
-//                            APPRouter.instance.route(APPRouterRequestOption(
-//                                APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT,
-//                                context,
-//                                params: params));
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -256,9 +249,7 @@ class _SearchStackAutoCompleteWidget extends StatelessWidget {
                   onTap: () {
                     HashMap<String, String> params = HashMap();
                     params["search_key"] = autoCompleteWords[index];
-//                    APPRouter.instance.route(APPRouterRequestOption(
-//                        APPRouter.ROUTER_NAME_NOVEL_SEARCH_RESULT, context,
-//                        params: params));
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(

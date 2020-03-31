@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/bookshelf/bookshelf_cloud_widget.dart';
-import 'package:xigua_read/bookshelf/bookshelf_header.dart';
 import 'package:xigua_read/db/db_helper.dart';
 import 'package:xigua_read/model/novel_info.dart';
 import 'package:xigua_read/novel/view/novel_book_reader.dart';
 import 'package:xigua_read/public.dart';
-import 'package:xigua_read/router/manager_router.dart';
 
 import 'package:xigua_read/search/search_novel.dart';
 import 'package:xigua_read/utility/screen.dart';
@@ -177,8 +175,7 @@ class BookshelfSceneState extends State<BookshelfScene>
 				),
 				GestureDetector(
 					onTap: () {
-//          APPRouter.instance.route(APPRouterRequestOption(
-//              APPRouter.ROUTER_NAME_NOVEL_SEARCH, context));
+
 						Navigator.push(
 							context, MaterialPageRoute(builder: (context) => SearchNovel()));
 					},
@@ -290,8 +287,10 @@ class BookshelfSceneState extends State<BookshelfScene>
 								..bookId = _listBean[index + 1].bookId
 								..cover = _listBean[index + 1].image
 								..title = _listBean[index + 1].title;
-							APPRouter.instance.route(NovelBookReaderView.buildIntent(
-								context, currentBookInfo));
+
+
+							Navigator.push(context, MaterialPageRoute(builder: (context) =>
+								NovelBookReaderView(currentBookInfo)));
 						},
 						onLongPress: () {
 							showDialog(
@@ -453,9 +452,14 @@ class BookshelfSceneState extends State<BookshelfScene>
 								..bookId = _listBean[0].bookId
 								..cover = _listBean[0].image
 								..title = _listBean[0].title;
-							APPRouter.instance.route(NovelBookReaderView.buildIntent(
-								context, currentBookInfo));
+
+							Navigator.push(context, MaterialPageRoute(builder: (context) => NovelBookReaderView(currentBookInfo)));
 						},
+
+//						onTap: () {
+//							Navigator.push(context,
+//								MaterialPageRoute(builder: (context) => SearchNovel()));
+//						},
 						onLongPress: () {
 							showDialog(
 								context: context,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:xigua_read/app/app_navigator.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/app/user_manager.dart';
+import 'package:xigua_read/me/login_scene.dart';
 
 import 'package:xigua_read/public.dart';
 
@@ -13,10 +13,14 @@ class MeHeader extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        if (UserManager.instance.isLogin) {
-          AppNavigator.pushWeb(context, 'https://github.com/huanxsd/flutter_shuqi', 'Github');
-        } else {
-          AppNavigator.pushLogin(context);
+//        if (UserManager.instance.isLogin) {
+//          AppNavigator.pushWeb(context, 'https://github.com/huanxsd/flutter_shuqi', 'Github');
+//        } else {
+//          AppNavigator.pushLogin(context);
+//        }
+        if (!UserManager.instance.isLogin) {
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => LoginScene()));
         }
       },
       child: Container(

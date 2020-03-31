@@ -15,23 +15,17 @@ import 'package:xigua_read/novel/widget/reader/menu/widget_reader_catalog_menu.d
 import 'package:xigua_read/novel/widget/reader/menu/widget_reader_setting_menu.dart';
 import 'package:xigua_read/novel/widget/reader/menu/widget_reader_top_menu.dart';
 import 'package:xigua_read/novel/widget/reader/model/model_reader_config.dart';
-import 'package:xigua_read/router/manager_router.dart';
+
 
 class NovelBookReaderView extends BaseStatefulView<NovelReaderViewModel> {
 	final NovelBookInfo bookInfo;
 
 	NovelBookReaderView(this.bookInfo);
 
-	static APPRouterRequestOption buildIntent(
-		BuildContext context, NovelBookInfo bookInfo) {
-		return APPRouterRequestOption(APPRouter.ROUTER_NAME_NOVEL_READER, context,
-			params: {
-				"bookInfo": bookInfo,
-			});
-	}
 
-	static NovelBookReaderView getPageView(APPRouterRequestOption option) {
-		return NovelBookReaderView(option.params["bookInfo"]);
+
+	static NovelBookReaderView getPageView(NovelBookInfo novelBookInfo) {
+		return NovelBookReaderView(novelBookInfo);
 	}
 
 	@override

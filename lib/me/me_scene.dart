@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:xigua_read/app/app_navigator.dart';
 
 import 'package:xigua_read/public.dart';
 import 'me_header.dart';

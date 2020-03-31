@@ -18,7 +18,7 @@ import 'package:xigua_read/novel/view/widget/novel_book_intro_header_tag_view.da
 import 'package:xigua_read/novel/view/widget/novel_book_intro_recommend_view.dart';
 import 'package:xigua_read/novel/view/widget/novel_book_intro_short_comment_view.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_intro.dart';
-import 'package:xigua_read/router/manager_router.dart';
+
 
 class NovelBookIntroView extends BaseStatefulView<NovelBookIntroViewModel> {
   NovelBookIntroView(this.targetBookId);

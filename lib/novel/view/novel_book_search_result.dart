@@ -6,7 +6,7 @@ import 'package:xigua_read/base/structure/base_view.dart';
 import 'package:xigua_read/model/novel_book_key_word_search.dart';
 import 'package:xigua_read/novel/view/novel_book_intro.dart';
 import 'package:xigua_read/novel/view_model/view_model_novel_search.dart';
-import 'package:xigua_read/router/manager_router.dart';
+
 
 class NovelSearchResultView
     extends BaseStatelessView<NovelBookSearchViewModel> {
@@ -39,10 +39,6 @@ class NovelSearchResultView
               return Container(
                 child: InkWell(
                   onTap: () {
-//                    APPRouter.instance.route(APPRouterRequestOption(
-//                        APPRouter.ROUTER_NAME_NOVEL_INTRO, context, params: {
-//                      "bookId": keyWordSearchResult?.books[index]?.id
-//                    }));
                   print("图书ID为: " + keyWordSearchResult.books[index].id);
                     Navigator.push(
                         context,

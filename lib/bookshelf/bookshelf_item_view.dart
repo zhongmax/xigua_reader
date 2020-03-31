@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xigua_read/app/app_navigator.dart';
 import 'package:xigua_read/app/sq_color.dart';
 import 'package:xigua_read/db/db_helper.dart';
-import 'package:xigua_read/model/novel.dart';
-
-import 'package:xigua_read/public.dart';
 import 'package:xigua_read/search/search_novel.dart';
 import 'package:xigua_read/utility/screen.dart';
 import 'package:xigua_read/utility/utils.dart';

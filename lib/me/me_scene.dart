@@ -76,13 +76,13 @@ class MeScene extends StatelessWidget {
               }));
             },
           ),
-          MeCell(
-            title: 'Github',
-            iconName: 'img/me_feedback.png',
-            onPressed: () {
-              AppNavigator.pushWeb(context, 'https://github.com/huanxsd/flutter_shuqi', 'Github');
-            },
-          ),
+//          MeCell(
+//            title: 'Github',
+//            iconName: 'img/me_feedback.png',
+//            onPressed: () {
+//              AppNavigator.pushWeb(context, 'https://github.com/huanxsd/flutter_shuqi', 'Github');
+//            },
+//          ),
         ],
       ),
     );

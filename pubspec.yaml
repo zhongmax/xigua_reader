@@ -33,15 +33,15 @@ dependencies:
   device_info: ^0.4.0
   intl: ^0.16.0
   provider: ^3.0.0+1
-  rxdart: ^0.22.6
-  dio: ^2.1.0
+  rxdart: ">=0.22.6 <0.26.0"
+  dio: ">=2.1.0 <6.0.0"
   # json与model转换
   json_annotation: ^3.0.0
   # flutter 团队维护的一个工具合集
   palette_generator: ^0.2.0
   extended_nested_scroll_view: ^0.3.6
   flutter_vector_icons: ^0.2.1
-  sqflite: ^1.1.7+3
+  sqflite: ">=1.1.7+3 <3.0.0"
   screen: ^0.0.5
   flutter_isolate: ^1.0.0+11
   # 未添加
